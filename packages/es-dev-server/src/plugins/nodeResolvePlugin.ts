@@ -48,7 +48,7 @@ export function nodeResolvePlugin(config: NodeResolveConfig): Plugin {
       const [withoutHash, hash] = source.split('#');
       const [importPath, params] = withoutHash.split('?');
 
-      const relativeImport = importPath.startsWith('.') || importPath.startsWith('/');
+      const relativeImport = importPath.startsWith('./') || importPath.startsWith('../') || importPath.startsWith('/');
       const jsFileImport = fileExtensions.includes(path.extname(importPath));
       // for performance, don't resolve relative imports of js files. we only do this for js files,
       // because an import like ./foo/bar.css might actually need to resolve to ./foo/bar.css.js
